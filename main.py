@@ -1,5 +1,6 @@
 from question_model import Question
-from quiz_brain import Quiz
+from quiz_brain import QuizBrain
+from ui import QuizInterface
 from data import question_data
 
 question_bank = []
@@ -7,10 +8,5 @@ question_bank = []
 for question in question_data:
     question_bank.append(Question(question["question"], question["correct_answer"]))
 
-question = Quiz(question_bank)
-
-while question.still_has_question():
-    question.next_question()
-
-print("\nYou've completed the quiz!")
-print(f"Your final score is {question.score}/{question.q_number}")
+quiz_brain = QuizBrain(question_bank)
+quiz_ui = QuizInterface(quiz_brain)
